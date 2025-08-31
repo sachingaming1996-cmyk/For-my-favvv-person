@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Cutie ❤️</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      color: #ff4b5c;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    button {
+      background: #ff4b5c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e63946;
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.5;
+      animation: fadeIn 1s ease-in-out;
+      min-height: 200px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hey Cutie ❤️</h1>
+    <p>Yeh card sirf tumhare liye hai… 💕</p>
+    <button onclick="showNext()">Tap to Reveal 💌</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    let messages = [
+      "💖 Tum meri smile ki wajah ho...",
+      "💖 Har pal tumhari yaad aati hai...",
+      "💖 Tum meri life ki sabse pyari cheez ho...",
+      "💖 Breakup hua par feelings abhi wahi hain 🥺",
+      "💖 Galti meri thi, par dil tumhara hi hai...",
+      "💖 Tum meri duniya thi, aur hamesha rahogi ❤️",
+      "💖 1.5 years ke moments abhi bhi mere dil me bas gaye hain...",
+      "💖 Saloni… tum meri Shona ho hamesha 💕"
+    ];
+
+    let index = 0;
+
+    function showNext() {
+      let msgBox = document.getElementById("message");
+
+      if (index < messages.length) {
+        msgBox.innerHTML += messages[index] + "<br>";
+        index++;
+      } else {
+        alert("💌 Yehi tha mera dil ka sab kuch tumhare liye...");
+      }
+    }
+  </script>
+</body>
+</html>
