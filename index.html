@@ -3,38 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For Saloni — from someone who calls you Shona 💛</title>
-  <meta name="description" content="A cute, tap-to-advance love note for Saloni — with hearts, confetti, and tiny animations. Built in plain HTML/CSS/JS so it runs anywhere." />
+  <meta name="theme-color" content="#fce7f3" />
+  <title>For Saloni — the one I call Shona 💛</title>
+  <meta name="description" content="A polished, 15-step tap-to-advance love story for Saloni — crafted with care, animations, and soft aesthetics." />
 
-  <!-- Pretty fonts (falls back to system fonts if offline) -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Theme ===== */
     :root {
-      --bg1: 255 247 250; /* rose-50 */
-      --bg2: 255 228 235; /* soft pink */
-      --accent: 236 72 153; /* fuchsia-500 */
-      --accent-2: 99 102 241; /* indigo-500 */
-      --ink: 41 37 36; /* neutral-800 */
-      --card: 255 255 255; /* white */
-      --glass: 255 255 255 / 0.7;
-      --ring: 236 72 153 / 0.4;
+      --bg1: 255 247 250;            /* rose-50 */
+      --bg2: 255 228 235;            /* soft pink */
+      --ink: 41 37 36;               /* neutral-800 */
+      --accent: 236 72 153;          /* fuchsia-500 */
+      --accent-2: 99 102 241;        /* indigo-500 */
+      --glass: 255 255 255 / 0.75;
+      --card: 255 255 255;
+      --ring: 236 72 153 / 0.28;
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; }
     body {
-      margin: 0;
-      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: rgb(var(--ink));
-      background: radial-gradient(1200px 800px at 10% 10%, rgba(var(--bg2), 0.6), transparent 60%),
-                  radial-gradient(1200px 800px at 90% 20%, rgba(var(--accent), 0.08), transparent 60%),
-                  linear-gradient(180deg, rgb(var(--bg1)) 0%, rgb(var(--bg2)) 100%);
+      background:
+        radial-gradient(1200px 800px at 8% 0%, rgba(var(--accent), 0.07), transparent 60%),
+        radial-gradient(1200px 800px at 92% 20%, rgba(var(--accent-2), 0.08), transparent 60%),
+        linear-gradient(180deg, rgb(var(--bg1)) 0%, rgb(var(--bg2)) 100%);
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Floating background hearts */
+    /* ===== Floating hearts background ===== */
     .float-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
     .heart {
       position: absolute; width: 18px; height: 18px;
@@ -43,117 +46,91 @@
       animation: floatUp linear both;
       filter: drop-shadow(0 6px 8px rgba(236, 72, 153, .25));
     }
-    .heart::before, .heart::after {
-      content: ""; position: absolute; width: 100%; height: 100%; border-radius: 50%; background: inherit;
-    }
+    .heart::before, .heart::after { content: ""; position: absolute; width: 100%; height: 100%; border-radius: 50%; background: inherit; }
     .heart::before { top: -50%; left: 0; }
     .heart::after  { left: -50%; top: 0; }
-    @keyframes floatUp { from { transform: translate(var(--x,0), var(--y,0)) rotate(45deg); opacity: .8; }
-                         to   { transform: translate(calc(var(--x,0) + var(--drift,0px)), -120vh) rotate(45deg); opacity: 0; } }
+    @keyframes floatUp { from { transform: translate(var(--x,0), var(--y,0)) rotate(45deg); opacity: .85; } to { transform: translate(calc(var(--x,0) + var(--drift,0px)), -120vh) rotate(45deg); opacity: 0; } }
 
-    /* Layout */
+    /* ===== Card layout ===== */
     .wrap { position: relative; height: 100dvh; display: grid; place-items: center; padding: 20px; }
-
     .card {
-      width: min(820px, 92vw);
-      min-height: min(620px, 84dvh);
+      width: min(880px, 94vw);
+      min-height: min(660px, 86dvh);
       border-radius: 28px;
-      background: color-mix(in oklab, rgb(var(--card)) 72%, rgba(var(--bg2), .35));
-      backdrop-filter: saturate(140%) blur(12px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.08), 0 3px 12px rgba(236,72,153,.15);
-      border: 1px solid rgba(236,72,153,.15);
-      position: relative;
+      background: color-mix(in oklab, rgb(var(--card)) 74%, rgba(var(--bg2), .36));
+      backdrop-filter: saturate(135%) blur(12px);
+      -webkit-backdrop-filter: saturate(135%) blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08), 0 3px 12px rgba(236,72,153,.12);
+      border: 1px solid rgba(236,72,153,.18);
       overflow: hidden;
+      position: relative;
     }
-
-    .ribbon {
-      position: absolute; inset: 0; pointer-events: none; opacity: .6;
-      background: radial-gradient(800px 180px at 50% -20px, rgba(var(--accent), .15), transparent 70%),
-                  radial-gradient(500px 140px at 100% 20%, rgba(var(--accent-2), .12), transparent 70%),
-                  radial-gradient(500px 140px at 0% 80%, rgba(var(--accent), .10), transparent 70%);
+    .ribbon { position: absolute; inset: 0; pointer-events: none; opacity: .55;
+      background:
+        radial-gradient(900px 200px at 50% -15%, rgba(var(--accent), .15), transparent 70%),
+        radial-gradient(600px 160px at 100% 20%, rgba(var(--accent-2), .12), transparent 70%),
+        radial-gradient(600px 160px at 0% 85%, rgba(var(--accent), .10), transparent 70%);
     }
 
     .content { position: relative; height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
     header { padding: 26px 26px 6px; text-align: center; }
-    header h1 {
-      margin: 0;
-      font-weight: 800;
-      font-size: clamp(26px, 5vw, 40px);
-      letter-spacing: .3px;
-      line-height: 1.1;
-    }
-    header .script {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(28px, 6vw, 48px);
-      line-height: 1;
-      color: rgb(var(--accent));
-      text-shadow: 0 1px 0 rgba(255,255,255,.6);
-    }
+    header h1 { margin: 0; font-weight: 800; font-size: clamp(26px, 5vw, 40px); letter-spacing: .2px; }
+    header .script { font-family: 'Great Vibes', cursive; font-size: clamp(28px, 6vw, 48px); color: rgb(var(--accent)); text-shadow: 0 1px 0 rgba(255,255,255,.6); }
 
     main { display: grid; place-items: center; padding: 8px 26px 0; }
     .step {
-      width: 100%; max-width: 680px;
-      padding: clamp(18px, 4vw, 26px);
+      width: 100%; max-width: 720px;
+      padding: clamp(18px, 4vw, 28px);
       border-radius: 22px;
-      background: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.82);
       border: 1px solid rgba(236,72,153,.18);
       box-shadow: 0 12px 24px rgba(236,72,153,.10), 0 2px 8px rgba(0,0,0,.05);
       transform-origin: 50% 60%;
-      animation: popIn .6s cubic-bezier(.2,.9,.2,1) both;
+      animation: popIn .55s cubic-bezier(.2,.9,.2,1) both;
     }
-    @keyframes popIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes popIn { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
     .title { font-weight: 700; font-size: clamp(18px, 3.2vw, 24px); margin-bottom: 8px; }
     .big   { font-size: clamp(28px, 5.6vw, 40px); font-weight: 800; }
-    .tag   { display: inline-block; margin-top: 10px; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .3px; background: rgba(236,72,153,.1); border: 1px solid rgba(236,72,153,.25); }
-    .muted { opacity: .8; }
+    .muted { opacity: .82; }
+    .script-inline { font-family: 'Great Vibes', cursive; color: rgb(var(--accent)); font-size: 1.2em; }
 
-    .kudos {
-      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px;
-    }
-    .pill {
-      padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(0,0,0,.06); background: rgba(255,255,255,.7);
-      font-size: 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 12px rgba(0,0,0,.04);
-    }
+    .kudos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px; }
+    .pill { padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(0,0,0,.06); background: rgba(255,255,255,.7); font-size: 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 12px rgba(0,0,0,.04); }
 
-    .progress { display: flex; justify-content: center; gap: 8px; padding: 18px 16px 26px; }
+    .progress { display: grid; gap: 10px; padding: 14px 18px 22px; }
+    .bar { height: 6px; width: 100%; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+    .bar > i { display: block; height: 100%; width: var(--w, 0%); background: linear-gradient(90deg, rgba(236,72,153,.9), rgba(99,102,241,.85)); transition: width .35s ease; border-radius: inherit; }
+    .dots { display: flex; justify-content: center; gap: 8px; }
     .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(0,0,0,.15); transition: .3s transform, .3s background; }
     .dot.active { background: rgba(236,72,153,.9); transform: scale(1.6); box-shadow: 0 0 0 6px rgba(236,72,153,.15); }
+    .count { text-align: center; font-size: 12px; opacity: .75; }
 
     .hint { position: absolute; inset: auto 16px 12px; text-align: center; font-size: 12px; opacity: .75; }
 
-    .cta {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 10px; padding: 12px 18px; border-radius: 16px; font-weight: 700; border: 1px solid rgba(236,72,153,.35);
-      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
-      box-shadow: 0 10px 18px rgba(236,72,153,.18), inset 0 1px 0 rgba(255,255,255,.8);
-      cursor: pointer; user-select: none;
-    }
+    .cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 18px; border-radius: 16px; font-weight: 700; border: 1px solid rgba(236,72,153,.35); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7)); box-shadow: 0 10px 18px rgba(236,72,153,.18), inset 0 1px 0 rgba(255,255,255,.8); cursor: pointer; user-select: none; }
     .cta:active { transform: translateY(1px); }
 
     /* Confetti */
     .confetti { position: fixed; top: -10px; left: 0; right: 0; pointer-events: none; z-index: 40; }
-    .confetti i { position: absolute; width: var(--s); height: var(--s); transform: rotate(var(--r)); border-radius: 2px;
-      background: hsl(var(--h), 90%, 60%); animation: fall var(--d) linear forwards; opacity: .9; }
+    .confetti i { position: absolute; width: var(--s); height: var(--s); transform: rotate(var(--r)); border-radius: 2px; background: hsl(var(--h), 90%, 60%); animation: fall var(--d) linear forwards; opacity: .9; }
     @keyframes fall { from { transform: translate(var(--x), -10px) rotate(var(--r)); } to { transform: translate(var(--xEnd), 105vh) rotate(calc(var(--r) + 180deg)); opacity: 0; } }
 
-    /* Typewriter for select lines */
-    .type { overflow: hidden; white-space: nowrap; border-right: 3px solid rgba(236,72,153,.85); animation: typing 2.8s steps(22,end), caret 1s step-end infinite; }
+    /* Typewriter */
+    .type { overflow: hidden; white-space: nowrap; border-right: 3px solid rgba(236,72,153,.85); animation: typing 2.6s steps(24,end), caret 1s step-end infinite; }
     @keyframes typing { from { width: 0 } to { width: 100% } }
     @keyframes caret { 50% { border-color: transparent } }
 
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      .heart, .confetti i, .step { animation: none !important; }
-    }
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) { .heart, .confetti i, .step { animation: none !important; } }
   </style>
 </head>
 <body>
-  <!-- Floating hearts in the background -->
+  <!-- Background hearts -->
   <div class="float-layer" id="float-layer"></div>
 
   <div class="wrap" id="tap-area" aria-live="polite" aria-atomic="true">
-    <div class="card">
+    <div class="card" role="region" aria-label="Love story for Saloni">
       <div class="ribbon"></div>
 
       <div class="content">
@@ -166,8 +143,12 @@
           <section class="step" id="step"></section>
         </main>
 
-        <div class="progress" id="progress"></div>
-        <div class="hint" id="hint">Tap / click anywhere to continue • 8 small steps</div>
+        <div class="progress">
+          <div class="bar"><i id="bar"></i></div>
+          <div class="dots" id="progress"></div>
+          <div class="count" id="count"></div>
+        </div>
+        <div class="hint" id="hint">Tap / click or swipe → to continue</div>
       </div>
     </div>
   </div>
@@ -175,98 +156,102 @@
   <div class="confetti" id="confetti"></div>
 
   <script>
-    // Personal details (edit if needed)
+    // ===== Personalize here =====
     const PERSON = { name: 'Saloni', nick: 'Shona', proposed: '14 Feb 2024', breakup: '10 May 2025' };
 
-    // Steps content (8 steps)
+    // ===== Steps (15) =====
     const steps = [
-      {
-        html: `
-          <div class="title">Hi <strong>${PERSON.name}</strong> 💛</div>
-          <div class="big type">I made this just for you.</div>
-          <p class="muted">(it’s tiny, simple, and full of feelings — just like us at our sweetest.)</p>
-          <span class="tag">Tap to begin</span>
-        `,
-      },
-      {
-        html: `
-          <div class="title">A date I’ll never forget</div>
-          <div class="big">${PERSON.proposed}</div>
-          <p>Wahi din jab maine tumhe dil se <em>propose</em> kiya — and somehow the world felt more colorful 💐</p>
-          <div class="kudos">
-            <div class="pill">📸 A thousand little smiles</div>
-            <div class="pill">💬 Late-night talks</div>
-          </div>
-          <span class="tag">From that day, it’s always been you.</span>
-        `,
-      },
-      {
-        html: `
-          <div class="title">Our picnic waali memories</div>
-          <p>Sunshine, silly selfies, thodi si shararat — aur tumhari hasi jo sabse khoobsurat thi. 💫</p>
-          <div class="kudos">
-            <div class="pill">🧺 Picnic blanket vibes</div>
-            <div class="pill">🍓 Shared bites</div>
-            <div class="pill">🌿 Long walks</div>
-            <div class="pill">🎶 Random songs</div>
-          </div>
-          <span class="tag">I saved them all — here, in my heart.</span>
-        `,
-      },
-      {
-        html: `
-          <div class="title">Tum meri <span class="script">${PERSON.nick}</span> ho</div>
-          <div class="big">Always were. Always will be.</div>
-          <p>Shona — naam me hi pyaar hai. Tumhare bina ghar bhi ghar jaisa nahi lagta.</p>
-          <span class="tag">I’m grateful for you.</span>
-        `,
-      },
-      {
-        html: `
-          <div class="title">Main galat tha</div>
-          <p>Kabhi kabhi pyaar ko lafzon se zyada <em>actions</em> chahiye hote hain. Maine galtiyan ki — and I’m truly sorry. 💔</p>
-          <p class="muted">(breakup: ${PERSON.breakup})</p>
-          <span class="tag">If I could go back, I’d choose you better — every time.</span>
-        `,
-        onEnter: () => pulseHearts(10)
-      },
-      {
-        html: `
-          <div class="title">What I’ve learned</div>
-          <div class="kudos">
-            <div class="pill">🕊️ Patience over pride</div>
-            <div class="pill">🧠 Listen to understand</div>
-            <div class="pill">🫶 Love that shows up</div>
-            <div class="pill">🔒 Trust worth keeping</div>
-          </div>
-          <p class="muted">Aur jo promises maine khud se kiye — woh tumhare saath nibhaana chahta hoon.</p>
-          <span class="tag">I want to make us safe, soft and steady.</span>
-        `,
-      },
-      {
-        html: `
-          <div class="title">A gentle ask</div>
-          <div class="big">Kya hum dobara koshish kar sakte hai? 💌</div>
-          <p>Na pressure, na jaldi. Bas ek chhota sa chance to love you right.</p>
-          <button class="cta" id="little-yes">Okay, maybe…</button>
-          <p class="muted">(tap again — ya button dabao)</p>
-        `,
-        onEnter: () => setTimeout(() => document.getElementById('little-yes')?.addEventListener('click', next), 0)
-      },
-      {
-        html: `
-          <div class="title">For my ${PERSON.nick}</div>
-          <div class="big">I love you, ${PERSON.name}. Today. Tomorrow. Always.</div>
-          <p>Jo bhi ho — I choose you. Let’s write new memories, aur iss baar aur bhi pyari.</p>
-          <button class="cta" id="celebrate">Celebrate this moment ✨</button>
-          <p class="muted">(tap to replay from start)</p>
-        `,
-        onEnter: () => setTimeout(() => document.getElementById('celebrate')?.addEventListener('click', burstConfetti), 0),
-        onLeave: () => {
-          /* cleanup after confetti */
-          document.getElementById('confetti').innerHTML = '';
-        }
-      }
+      { html: `
+        <div class="title">Hi <strong>${PERSON.name}</strong> 💛</div>
+        <div class="big type">I made this just for you.</div>
+        <p class="muted">(tiny, simple, and full of feelings — just like us at our sweetest.)</p>
+      `},
+      { html: `
+        <div class="title">A date I’ll never forget</div>
+        <div class="big">${PERSON.proposed}</div>
+        <p>Wahi din jab maine tumhe dil se <em>propose</em> kiya — aur duniya thodi aur rangeen ho gayi 💐</p>
+        <div class="kudos">
+          <div class="pill">📸 A thousand little smiles</div>
+          <div class="pill">💬 Long, honest talks</div>
+        </div>
+      `},
+      { html: `
+        <div class="title">Picnic waali yaadein</div>
+        <p>Sunshine, silly selfies, thodi si shararat — aur tumhari hasi jo sabse khoobsurat thi. 🌿</p>
+        <div class="kudos">
+          <div class="pill">🧺 Blanket vibes</div>
+          <div class="pill">🍓 Shared bites</div>
+          <div class="pill">🎶 Random songs</div>
+          <div class="pill">🚶 Long walks</div>
+        </div>
+      `},
+      { html: `
+        <div class="title">Tum meri <span class="script-inline">${PERSON.nick}</span> ho</div>
+        <div class="big">Always were. Always will be.</div>
+        <p>Naam me hi pyaar hai. Tumhare bina ghar bhi ghar jaisa nahi lagta.</p>
+      `},
+      { html: `
+        <div class="title">Main galat tha</div>
+        <p>Kabhi pyaar ko lafzon se zyada <em>actions</em> chahiye hote hain. Maine galtiyan ki — and I’m truly sorry 💔</p>
+        <p class="muted">(breakup: ${PERSON.breakup})</p>
+      `, onEnter: () => pulseHearts(12) },
+      { html: `
+        <div class="title">What I’ve learned</div>
+        <div class="kudos">
+          <div class="pill">🕊️ Patience over pride</div>
+          <div class="pill">🧠 Listen to understand</div>
+          <div class="pill">🫶 Love that shows up</div>
+          <div class="pill">🔒 Trust worth keeping</div>
+        </div>
+        <p class="muted">Jo promises maine khud se kiye — woh tumhare saath nibhaana chahta hoon.</p>
+      `},
+      { html: `
+        <div class="title">A gentle ask</div>
+        <div class="big">Kya hum dobara koshish kar sakte hai? 💌</div>
+        <p>Na pressure, na jaldi. Bas ek chhota sa chance to love you right.</p>
+        <button class="cta" id="little-yes">Okay, maybe…</button>
+        <p class="muted">(tap / swipe bhi kar sakti ho)</p>
+      `, onEnter: () => setTimeout(() => document.getElementById('little-yes')?.addEventListener('click', next), 0) },
+      { html: `
+        <div class="title">First meeting</div>
+        <p>Pehli baar park me, tumhare ghar ke paas — aankhon ne pehle hi decide kar liya tha. 🌸</p>
+      `},
+      { html: `
+        <div class="title">Late‑night talks</div>
+        <p>2–3 AM wali baatein — jab sab so jata hai, par dil dono taraf se jaagta hai. 💬</p>
+      `},
+      { html: `
+        <div class="title">The way I see you</div>
+        <p>Tumhari smile, tumhari aankhein, tumhare lips — sab kuch perfect. Aur sab kuch <em>mere liye</em> perfect.</p>
+      `},
+      { html: `
+        <div class="title">Future dreams</div>
+        <p>World tour 🌍, ghar me hansi, hamare bacchon ko pyaar — aur hum, saath saath, har subah.</p>
+      `},
+      { html: `
+        <div class="title">Funny moments</div>
+        <p>Jitni baar tumne mujhe tease kiya, utni baar aur pyaar hua. 😅</p>
+        <div class="kudos">
+          <div class="pill">🎭 Inside jokes</div>
+          <div class="pill">😂 Random giggles</div>
+        </div>
+      `},
+      { html: `
+        <div class="title">A promise</div>
+        <div class="big">You’re my first… and you’ll be my last.</div>
+        <p>Bas itna hi sach hai. Aur yeh hamesha rahega. 💍</p>
+      `},
+      { html: `
+        <div class="title">Confession</div>
+        <div class="big type">I love you, ${PERSON.name}.</div>
+        <p>Today. Tomorrow. Always.</p>
+      `},
+      { html: `
+        <div class="title">Grand finale</div>
+        <div class="big">Let’s celebrate us ✨</div>
+        <button class="cta" id="celebrate">Celebrate this moment</button>
+        <p class="muted">(tap to replay from start)</p>
+      `, onEnter: () => setTimeout(() => document.getElementById('celebrate')?.addEventListener('click', burstConfetti), 0), onLeave: () => { document.getElementById('confetti').innerHTML = ''; } },
     ];
 
     let index = 0;
@@ -274,15 +259,22 @@
     function render() {
       const el = document.getElementById('step');
       el.innerHTML = steps[index].html;
-      // progress dots
+
+      // Dots + bar + page count
       const p = document.getElementById('progress');
+      const b = document.getElementById('bar');
+      const c = document.getElementById('count');
       p.innerHTML = '';
       for (let i = 0; i < steps.length; i++) {
         const d = document.createElement('div');
         d.className = 'dot' + (i === index ? ' active' : '');
         p.appendChild(d);
       }
-      document.getElementById('hint').textContent = index < steps.length - 1 ? 'Tap / click anywhere to continue' : 'Tap anywhere to restart';
+      const percent = ((index + 1) / steps.length) * 100;
+      b.style.setProperty('--w', percent + '%');
+      c.textContent = `${index + 1} / ${steps.length}`;
+
+      document.getElementById('hint').textContent = index < steps.length - 1 ? 'Tap / click or swipe → to continue' : 'Tap anywhere to restart';
       steps[index].onEnter?.();
     }
 
@@ -290,22 +282,42 @@
       steps[index].onLeave?.();
       index = (index + 1) % steps.length;
       render();
-      // fun micro-feedback when advancing
-      pulseHearts(6);
+      pulseHearts(8);
       if (index === steps.length - 1) burstConfetti();
     }
 
-    // tap/click/keyboard navigation
+    function prev() {
+      steps[index].onLeave?.();
+      index = (index - 1 + steps.length) % steps.length;
+      render();
+    }
+
+    // Tap / click
     const tapArea = document.getElementById('tap-area');
     tapArea.addEventListener('click', (e) => {
-      // avoid double-trigger when clicking buttons (they call next themselves)
-      if (e.target.closest('.cta')) return;
+      if (e.target.closest('.cta')) return; // buttons call next themselves
       next();
     });
+
+    // Keyboard
     window.addEventListener('keydown', (e) => {
       if (['Enter', ' ', 'ArrowRight'].includes(e.key)) { e.preventDefault(); next(); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); index = (index - 1 + steps.length) % steps.length; render(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
     });
+
+    // Swipe (mobile)
+    let startX = null, startY = null;
+    tapArea.addEventListener('touchstart', (e) => {
+      const t = e.changedTouches[0]; startX = t.clientX; startY = t.clientY;
+    }, { passive: true });
+    tapArea.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX; const dy = Math.abs(t.clientY - startY);
+      const TH = 30; // min swipe px
+      if (Math.abs(dx) > TH && dy < 60) { dx < 0 ? next() : prev(); }
+      startX = startY = null;
+    }, { passive: true });
 
     // Decorative floating hearts
     const floatLayer = document.getElementById('float-layer');
@@ -314,22 +326,22 @@
         const h = document.createElement('div');
         h.className = 'heart';
         const x = Math.random() * window.innerWidth;
-        const y = window.innerHeight - Math.random() * 120; // start near bottom
+        const y = window.innerHeight - Math.random() * 120;
         h.style.left = x + 'px';
         h.style.top = y + 'px';
         h.style.setProperty('--x', '0px');
         h.style.setProperty('--y', '0px');
         h.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px');
-        h.style.animationDuration = (2.2 + Math.random() * 1.2) + 's';
+        h.style.animationDuration = (2.1 + Math.random() * 1.3) + 's';
         floatLayer.appendChild(h);
-        setTimeout(() => floatLayer.removeChild(h), 3500);
+        setTimeout(() => floatLayer.removeChild(h), 3400);
       }
     }
 
-    // Confetti effect
+    // Confetti
     function burstConfetti() {
       const root = document.getElementById('confetti');
-      const N = 140;
+      const N = 160;
       for (let i = 0; i < N; i++) {
         const piece = document.createElement('i');
         const size = (6 + Math.random() * 8) + 'px';
